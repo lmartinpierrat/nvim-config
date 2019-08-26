@@ -15,28 +15,26 @@
         Plug 'morhetz/gruvbox'
         Plug 'tpope/vim-fugitive'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        Plug 'liuchengxu/eleline.vim'
+        Plug 'jiangmiao/auto-pairs'
+        Plug 'vim-airline/vim-airline'
 
     call plug#end()
 
+    " General config {
+      let mapleader = ","
+    " }
 
-    " solarized configuration {
-
+    " gruvbox configuration {
         syntax on
-        set termguicolors
         set background=dark
         colorscheme gruvbox
-
     " }
 
     " indentline configuration {
-
         autocmd FileType help,nerdtree IndentLinesDisable
         autocmd FileType help,nerdtree LeadingSpaceDisable
-
         let g:indentLine_leadingSpaceChar = '·'
         let g:indentLine_leadingSpaceEnabled = 1
-
     " }
     
     " nerdtree configuration {
@@ -194,7 +192,6 @@
 " }
 
 " Key mapping {
-    let mapleader = ","
     nmap <leader>e :NERDTreeToggle<CR>
     map <F4> :call CurtineIncSw()<CR>
     map <C-_> <Leader>c<Space>
@@ -214,7 +211,7 @@
         let @/=_s
         call cursor(l, c)
     endfunction
-    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType c,cpp,cmake,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     " }
 
     " Reloads vimrc after saving but keep cursor position
