@@ -17,12 +17,18 @@
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'jiangmiao/auto-pairs'
         Plug 'vim-airline/vim-airline'
+        Plug 'dense-analysis/ale'
+        Plug 'tpope/vim-surround'
+        Plug 'terryma/vim-multiple-cursors'
 
     call plug#end()
 
     " General config {
       let mapleader = ","
     " }
+
+    let g:ale_sign_error = '✘'
+    let g:ale_c_parse_compile_commands=1
 
     " gruvbox configuration {
         syntax on
@@ -177,6 +183,10 @@
 
     set list
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+    set sidescrolloff=5
+    set scrolloff=5
+    set cinoptions=g0
 " }
 
 " Formatting {
