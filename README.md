@@ -1,4 +1,13 @@
+
+# nvim-tree
+
+Currently, nvim-tree automatically add ".." to the root header. We can modify the local version of
+nvim-tree renderer/builder.lua in order to remove that part and have a cleaner header.
+
+
 Require Clangd to be installed for autocompletion
+
+
 
 
 
