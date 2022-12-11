@@ -11,6 +11,7 @@ vim.o.showmatch = true
 vim.wo.cursorline = true
 vim.wo.colorcolumn = "140"
 vim.wo.number = true
+vim.wo.signcolumn = "yes"
 
 -- add padding around horizontal and vertical scrolling
 vim.wo.sidescrolloff = 5

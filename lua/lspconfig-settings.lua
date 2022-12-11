@@ -6,26 +6,27 @@
 require('mason').setup()
 require('mason-lspconfig').setup()
 
-require('lspconfig')['clangd'].setup({})
-require('lspconfig')['cmake'].setup({})
-require('lspconfig')['bashls'].setup({})
-require('lspconfig')['pyright'].setup({})
+local cmp = require('cmp')
 
-require('lspconfig')['sumneko_lua'].setup({
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT'
-            },
-            diagnostics = {
-                globals = {'vim'}
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true)
-            },
-            telemetry = {
-                enable = false
-            }
-        }
-    }
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true })
+    }),
+    sources = cmp.config.sources({
+        { name = "buffer" },
+        { name = "nvim_lsp" },
+    })
 })
+
+local capaiblities = require('cmp_nvim_lsp').default_capabilities()
+require('lspconfig')['clangd'].setup({ capabilities = capabilities })
+require('lspconfig')['cmake'].setup({ capabilities = capabilities })
+require('lspconfig')['bashls'].setup({ capabilities = capabilities })
+require('lspconfig')['pyright'].setup({ capabilities = capabilities })
