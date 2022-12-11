@@ -3,12 +3,12 @@
 -- Proprietary and confidential
 -- Written by Martin-Pierrat Louis (louismartinpierrat@gmail.com), 2022
 
+require('impatient')
 require('plugins')
 require('settings')
-require('nvim-tree-settings')
-require('gruvbox-material-settings')
-require('lualine-settings')
-require('indent-blankline-settings')
+require('colorscheme-settings')
 require('nvim-tree-settings')
 require('treesitter-settings')
-require('comment-settings')
+require('telescope-settings')
+require('plugins-settings')
+require('lspconfig-settings')
