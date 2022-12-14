@@ -60,3 +60,5 @@ require('toggleterm').setup({
 require('trim').setup({
     disable = {"markdown"}
 })
+
+require('nvim-surround').setup({})
