@@ -11,8 +11,14 @@ External from neovim:
 - lazygit
 - nerdfont
 
+List of interesting plugins: 
+
+https://github.com/xzbdmw/colorful-menu.nvim
+
 The package manager used is lazy.nvim (https://github.com/folke/lazy.nvim),
 with the following configured plugins:
 
-# nvim-tree
+- nvim-tree
+- nvim-colorizer
+- which-key
 

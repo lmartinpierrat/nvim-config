@@ -1,9 +1,29 @@
+-- This is free and unencumbered software released into the public domain.
+-- Anyone is free to copy, modify, publish, use, compile, sell, or
+-- distribute this software, either in source code form or as a compiled
+-- binary, for any purpose, commercial or non-commercial, and by any means.
+
 return {
 
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
         lazy = false,
+        dependencies = {
+            {
+                'b0o/nvim-tree-preview.lua',
+                dependencies = {
+                    'nvim-lua/plenary.nvim',
+                },
+                opts = {
+                    min_width = 80,
+                    min_height = 10,
+                    max_width = 180,
+                    max_height = 80,
+                    show_title = true,
+                }
+            }
+        },
         opts = {
             disable_netrw = true,
             hijack_cursor = true,
@@ -16,7 +36,6 @@ return {
             renderer = {
                 root_folder_modifier = ":t%",
                 group_empty = true,
-                hidden_display = 'simple',
                 icons = {
                     show = {
                         file = false,
@@ -33,22 +52,41 @@ return {
                             arrow_open = '▿',
                         },
                         git = {}
-                    }
+                    },
+                    git_placement = 'signcolumn'
                 }
             },
-
+            filters = {
+                dotfiles = true,
+                exclude = { "%.clang%-format", "%.clang%-tidy", "%.gitignore" }
+            },
             on_attach = function(bufnr)
 
                 local api = require('nvim-tree.api')
+                local preview = require('nvim-tree-preview')
 
                 local function opts(desc)
-                    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+                    return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
+
+                vim.keymap.set('n', '<Tab>', function()
+
+                    if not preview.is_watching() then
+                        preview.watch()
+                        return nil
+                    end
+
+                    local ok, node = pcall(api.tree.get_node_under_cursor)
+                    if ok and node then
+                        preview.node(node, { toggle_focus = true })
+                    end
+
+                end, opts('open preview'))
+                vim.keymap.set('n', '<Esc>', preview.unwatch, opts('close preview'))
 
                 vim.keymap.set('n', '<cr>',   api.node.open.edit,             opts('open file'))
                 vim.keymap.set('n', 's',      api.node.open.vertical,         opts('split vertical'))
                 vim.keymap.set('n', 'i',      api.node.open.horizontal,       opts('split horizontal'))
-                vim.keymap.set('n', '<tab>',  api.node.open.preview,          opts('preview'))
                 vim.keymap.set('n', 'I',      api.node.show_info_popup,       opts('info'))
 
                 vim.keymap.set('n', 'e',      api.tree.expand_all,            opts('expand all nodes'))

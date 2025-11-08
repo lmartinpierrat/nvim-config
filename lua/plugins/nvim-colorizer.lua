@@ -3,4 +3,12 @@
 -- distribute this software, either in source code form or as a compiled
 -- binary, for any purpose, commercial or non-commercial, and by any means.
 
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+return {
+
+    {
+        "catgoose/nvim-colorizer.lua",
+        event = "BufReadPre",
+        opts = {}
+    }
+
+}
