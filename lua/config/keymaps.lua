@@ -3,7 +3,4 @@
 -- distribute this software, either in source code form or as a compiled
 -- binary, for any purpose, commercial or non-commercial, and by any means.
 
-require("config.bootstrap")
-require("config.options")
-require("config.init")
-require("config.keymaps")
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })

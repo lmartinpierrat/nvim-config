@@ -1,11 +1,14 @@
--- Copyright (C) Martin-Pierrat Louis  - All Rights Reserved
--- Unauthorized copying of this file, via any medium is strictly prohibited
--- Proprietary and confidential
--- Written by Martin-Pierrat Louis (louismartinpierrat@gmail.com), 2022
+-- This is free and unencumbered software released into the public domain.
+-- Anyone is free to copy, modify, publish, use, compile, sell, or
+-- distribute this software, either in source code form or as a compiled
+-- binary, for any purpose, commercial or non-commercial, and by any means.
 
 vim.g.mapleader = ','
+vim.g.maplocalleader = ";"
 
 vim.o.showmatch = true
+
+vim.o.termguicolors = true
 
 -- highlight the line under the cursor
 vim.wo.cursorline = true
@@ -44,3 +47,7 @@ vim.opt.listchars = {
     precedes = '◂',
     nbsp = '.'
 }
+
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
