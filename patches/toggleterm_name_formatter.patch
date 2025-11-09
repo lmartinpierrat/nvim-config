@@ -1,0 +1,25 @@
+diff --git a/lua/toggleterm/config.lua b/lua/toggleterm/config.lua
+index 736d8cf..45669fe 100644
+--- a/lua/toggleterm/config.lua
++++ b/lua/toggleterm/config.lua
+@@ -61,6 +61,7 @@ local config = {
+   shell = vim.o.shell,
+   autochdir = false,
+   auto_scroll = true,
++  name_formatter = function(term) return '' end,
+   winbar = {
+     enabled = false,
+     name_formatter = function(term) return fmt("%d:%s", term.id, term:_display_name()) end,
+diff --git a/lua/toggleterm/terminal.lua b/lua/toggleterm/terminal.lua
+index 91d58f6..604849d 100644
+--- a/lua/toggleterm/terminal.lua
++++ b/lua/toggleterm/terminal.lua
+@@ -206,7 +206,7 @@ function Terminal:new(term)
+   term.newline_chr = term.newline_chr or get_newline_chr()
+   term.direction = term.direction or conf.direction
+   term.id = id or next_id()
+-  term.display_name = term.display_name
++  term.display_name = term.display_name or conf.name_formatter(term)
+   term.float_opts = vim.tbl_deep_extend("keep", term.float_opts or {}, conf.float_opts)
+   term.clear_env = vim.F.if_nil(term.clear_env, conf.clear_env)
+   term.auto_scroll = vim.F.if_nil(term.auto_scroll, conf.auto_scroll)
