@@ -7,9 +7,10 @@ return {
 
     {
         'cappyzawa/trim.nvim',
+        enabled = true,
         opts = {
             trim_first_line = false,
-            disable = {"markdown"}
+            ft_blocklist = {"markdown"}
         }
     }
 

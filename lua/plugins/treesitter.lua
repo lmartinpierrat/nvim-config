@@ -9,21 +9,34 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        branch = 'main',
-        version = false,
+        enabled = true,
         lazy = false,
+        branch = 'main',
         build = ':TSUpdate',
-        event = { "VeryLazy" },
-        cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
-        opts = {
-            indent = { enable = true },
-            highlight = { enable = true },
-            folds = { enable = true },
-            ensure_installed = {
-                'bash',
-                'lua'
-            },
-        }
+        config = function()
+
+            local treesitter = require('nvim-treesitter')
+            local parsers = {
+                "c",
+                "rust",
+                "lua",
+                "markdown"
+            }
+
+            treesitter.setup({
+                install_dir = vim.fn.stdpath('data') .. "/lazy/nvim-treesitter/"
+            })
+
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = parsers,
+                callback = function()
+                    vim.treesitter.start()
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
+
+        end
     }
 
 }

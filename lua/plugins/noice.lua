@@ -9,13 +9,14 @@ return {
 
     {
         "folke/noice.nvim",
+        enabled = true,
         event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
         opts = {
-            presets = { 
+            presets = {
                 bottom_search = false,
                 command_palette = true,
                 long_message_to_split = true,
@@ -41,7 +42,7 @@ return {
                 },
             },
             messages = {
-                enabled = true 
+                enabled = true
             },
             popupmenu = {
                 enabled = true,

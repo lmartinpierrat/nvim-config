@@ -6,6 +6,7 @@
 return {
     {
         'nvim-lualine/lualine.nvim',
+        enabled = true,
         dependencies = {
             'nvim-tree/nvim-web-devicons'
         },
@@ -15,7 +16,7 @@ return {
                 globalstatus = true,
                 always_divide_middle = true,
             },
-            extensions = { 
+            extensions = {
                 'nvim-tree'
             },
             sections = {
